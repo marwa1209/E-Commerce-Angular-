@@ -1,0 +1,40 @@
+<section class="bg-main-light p-4 rounded-3  w-75 mx-auto shadow">
+    <h1 class="mb-3 fs-2 fw-light">Pay Now :</h1>
+    <form action="" [formGroup]="CheckOut">
+
+        <div class="mb-3">
+            <label for="details" class="form-label">details:</label>
+            <textarea #inputName formControlName="details" type="text" class="form-control" id="details"></textarea>
+            <ng-container *ngIf="CheckOut.get('details')?.touched ||inputName.value.length>0">
+                <p *ngIf="CheckOut.get('details')?.getError('required')" class="alert alert-danger p-2 my-2">details is
+                    required!</p>
+                <p *ngIf="CheckOut.get('details')?.getError('minlength')" class="alert alert-danger p-2 my-2">details
+                    must
+                    be at least
+                    20 characters long!</p>
+                <p *ngIf="CheckOut.get('details')?.getError('maxlength')" class="alert alert-danger p-2 my-2">details
+                    cannot exceed 50
+                    characters!</p>
+            </ng-container>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">phone:</label>
+            <input #InputPhone formControlName="phone" type="tel" class="form-control" id="phone">
+            <ng-container *ngIf="CheckOut.get('phone')?.touched ||InputPhone.value.length>0">
+                <p *ngIf="CheckOut.get('phone')?.getError('required')" class="alert alert-danger p-2 my-2">phone is
+                    required!</p>
+                <p *ngIf="CheckOut.get('phone')?.getError('pattern')" class="alert alert-danger p-2 my-2">Invalid
+                    phone number format! Phone number should start with '01' followed by 9 digits</p>
+            </ng-container>
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">Select a city:</label>
+            <select formControlName="city" id="city" class="form-select">
+                <option value="" disabled>Select a city</option>
+                <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            </select>
+        </div>
+        <button class="btn-main px-4 mt-3 py-0">Pay with <img src="../../../assets/images/visa-1.svg" /> </button>
+
+    </form>
+</section>

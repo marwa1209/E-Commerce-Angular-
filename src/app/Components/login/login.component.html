@@ -1,0 +1,32 @@
+<section class="bg-main-light p-4 rounded  w-75 mx-auto">
+    <h1 class="mb-3 fs-2 fw-light">Login Now :</h1>
+    <form (ngSubmit)="handleLogin()"  [formGroup]="LoginForm">
+
+
+        <div class="mb-3">
+            <label for="email" class="form-label">email:</label>
+            <input #inputEmail formControlName="email" type="email" class="form-control" id="email">
+            <ng-container *ngIf="LoginForm.get('email')?.touched ||inputEmail.value.length>0">
+                <p *ngIf="LoginForm.get('email')?.getError('required')" class="alert alert-danger p-2 my-2">Email is
+                    required!</p>
+                <p *ngIf="LoginForm.get('email')?.getError('email')" class="alert alert-danger p-2 my-2">Invalid
+                    email format!</p>
+            </ng-container>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">password:</label>
+            <input formControlName="password" type="password" class="form-control" id="password">
+            <ng-container *ngIf="LoginForm.get('password')?.touched">
+                <p *ngIf="LoginForm.get('password')?.getError('required')" class="alert alert-danger p-2 my-2">
+                    password is
+                    required!</p>
+                <p *ngIf="LoginForm.get('password')?.getError('pattern')" class="alert alert-danger p-2 my-2">
+                    Password must start with an uppercase letter, followed by 6 to 10 lowercase letters or digits!</p>
+            </ng-container>
+        </div>
+
+        <button type="submit" class="btn-main mb-3 d-block ms-auto"><i *ngIf="isLoading"
+                class="fas fa-spinner fa-spin"></i> Login</button>
+    </form>
+</section>

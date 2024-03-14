@@ -1,0 +1,65 @@
+<section class="mx-5 my-3 ">
+    <div class="row g-0">
+        <div class="col-md-9">
+            <owl-carousel-o [options]="mainSliderOptions">
+                <ng-template carouselSlide><img src="./assets/images/main-slider-3.jpeg" alt="main-slider-3"
+                        class="w-100" height="500px" /></ng-template>
+                <ng-template carouselSlide><img src="./assets/images/main-slider-2.jpeg" alt="main-slider-3"
+                        class="w-100" height="500px" /></ng-template>
+                <ng-template carouselSlide><img src="./assets/images/main-slider-1.jpeg" alt="main-slider-3"
+                        class="w-100" height="500px" /></ng-template>
+            </owl-carousel-o>
+
+        </div>
+        <div class="col-md-3">
+            <img src="./assets/images/main-slider-1.jpeg" alt="main-slider-1" class="w-100" height="250px" />
+            <img src="./assets/images/main-slider-2.jpeg" alt="main-slider-2" class="w-100" height="250px" />
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section #categories class="m-5">
+    <h3 class="fs-5 mb-4">Shop Popular Categories</h3>
+    <owl-carousel-o [options]="categoriesSliderOptions">
+        <ng-container *ngFor="let slide of Categories">
+            <ng-template carouselSlide [id]="slide._id">
+                <div>
+                    <img class="w-100" [src]="slide.image" [alt]="slide.name" height="270px">
+                    <h3 class="fs-6">{{slide.name}}</h3>
+                </div>
+            </ng-template>
+        </ng-container>
+
+    </owl-carousel-o>
+</section>
+<!-- Products -->
+<section #products class="m-5">
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search Products..." aria-label="Search" [(ngModel)]="term">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let product of Products.slice(0,12)|search:term">
+            <div class="product p-2 ">
+                <div [routerLink]="['/details',product._id]" class="cursor-pointer">
+                    <img class="w-100 mb-3" [src]="product.imageCover" [alt]="product.title">
+                    <h3 class="h6 text-main">{{product.category.name}}</h3>
+                    <h4 class="h5 mb-4">{{product.title.split(' ').slice(0,2).join(' ')}}</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>{{product.price}} EGP</span>
+                        <div><i class="fa-solid fa-star rating-color"></i>
+                            <span class="text-muted">{{product.ratingsAverage}}</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-main w-100 my-2"(click)="AddToCart(product._id)">Add Product</button>
+            </div>
+        </div>
+    </div>
+</section>

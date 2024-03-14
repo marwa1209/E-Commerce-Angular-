@@ -1,38 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import "./Variables";
-@import 'ngx-toastr/toastr';
-input:focus,select:focus,textarea:focus {
-  box-shadow: none !important;
-}
-input,select,textarea {
-  border: 1px solid #11bd11 !important;
-}
 body {
-  font-family: $font-family !important;
+  font-family: "Encode Sans Expanded", sans-serif !important;
 }
+
 a {
   color: inherit;
-  text-decoration: none !important;
 }
+
 .nav-link {
   transition: unset !important;
 }
-.common {
-  background-color: $main-color !important;
+
+.common, .btn-main, .bg-main, .active-link {
+  background-color: #0aad0a !important;
 }
+
 .active-link {
-  @extend .common;
-  color: $light-color !important;
+  color: #f0f3f2 !important;
   border-radius: 5px;
 }
 
 .rating-color {
-  color: $rating-color;
+  color: #ffc908;
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
+
 a,
 a:hover {
   color: black;
@@ -41,29 +37,28 @@ a:hover {
 
 .product {
   border-radius: 5px;
-  border: solid 1px $main-color;
+  border: solid 1px #0aad0a;
   transition: box-shadow 0.5s;
   overflow: hidden;
 }
 
 .product:hover {
-  box-shadow: 0 0 10px #11bd1168;
+  box-shadow: 0 0 10px rgba(17, 189, 17, 0.4078431373);
 }
 
 .font-sm {
   font-size: 12px;
 }
+
 .text-main {
-  color: $main-color;
+  color: #0aad0a;
 }
-.bg-main {
-  @extend .common;
-}
+
 .bg-main-light {
-  background-color: $light-color !important;
+  background-color: #f0f3f2 !important;
 }
+
 .btn-main {
-  @extend .common;
   padding: 7px 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -71,20 +66,16 @@ a:hover {
   cursor: pointer;
   transition: background-color 0.5s;
 }
+
 .btn-main:disabled {
   cursor: not-allowed;
   background-color: #ccc !important;
 }
+
 .btn-main:disabled:hover {
   background-color: #ccc !important;
 }
+
 .btn-main:hover {
   background-color: #11bd11 !important;
-}
-.product .btn-main {
-  transform: translateY(150%);
-  transition: transform 0.5s;
-}
-.product:hover .btn-main {
-  transform: translateY(0);
-}
+}/*# sourceMappingURL=styles.css.map */

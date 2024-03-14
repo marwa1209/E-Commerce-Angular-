@@ -1,0 +1,38 @@
+<section class="my-5 p-3  bg-light w-75 m-auto" *ngIf="CartItem ;else:msg">
+    <h2 class="fs-3 py-3">Shop Cart</h2>
+    <h4 class="text-main fs-6">Total:Price: {{CartItem.data.totalCartPrice}} EGP</h4>
+    <button class="btn btn-danger mt-5 ms-auto d-block" (click)="clearCart()">Clear Cart</button>
+    <div class="d-flex align-items-center justify-content-between  border-bottom border-1 border-success-subtle py-3"
+        *ngFor="let product of CartItem?.data?.products">
+        <div class="d-flex justify-content-center align-items-center gap-3">
+            <picture>
+                <img class="w-100" [src]="product?.product?.imageCover" [alt]="product?.product?.title" height="200px">
+            </picture>
+            <div class="">
+                <h3>{{product?.product?.title}}</h3>
+                <h4 class="text-main fs-5 mb-4">Price: {{product?.price}}</h4>
+                <span>
+                    <a (click)="removeItem(product.product._id)" class="cursor-pointer"><i
+                            class="fa-solid fa-trash-can text-main fs-5 me-2"></i>Remove</a>
+                </span>
+            </div>
+        </div>
+
+        <div>
+
+            <button class="btn btn-main bg-transparent fs-5 p-2"
+                (click)="changeCount(product.product._id , product.count+1)">+</button>
+            <span class="px-2">{{product.count}}</span>
+            <button class="btn btn-main bg-transparent fs-5 p-2"
+                (click)="changeCount(product.product._id,product.count-1)">-</button>
+        </div>
+    </div>
+    <button class="btn btn-main mt-5" routerLink="/checkout">CheckOut</button>
+
+</section>
+<ng-template #msg>
+    <div class="my-5 p-3  bg-light w-75 m-auto">
+        <h1>The Cart Is Empty</h1>
+        <button class="btn-main my-5" routerLink="/home">Continue shopping</button>
+    </div>
+</ng-template>
