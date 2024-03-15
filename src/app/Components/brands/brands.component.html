@@ -1,1 +1,12 @@
-<p>brands works!</p>
+<section #products class="m-5">
+    <div class="row g-4">
+        <div class="col-lg-2 col-md-4 col-sm-6" *ngFor="let brand of brands">
+            <div class="product p-2 ">
+                <div>
+                    <img class="w-100 mb-3" [src]="brand.image" [alt]="brand.name" height="250px">
+                    <h4 class="h5 mb-4">{{brand.name}}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

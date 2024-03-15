@@ -6,30 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  headers: any = { token: localStorage.getItem('token') };
   constructor(private _HttpClient: HttpClient) {}
   addToCart(productId: string): Observable<any> {
     return this._HttpClient.post(
       `https://ecommerce.routemisr.com/api/v1/cart`,
       {
         productId: productId,
-      },
-      {
-        headers: this.headers,
       }
     );
   }
+
   getUserCart(): Observable<any> {
-    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/cart`, {
-      headers: this.headers,
-    });
+    return this._HttpClient.get(`https://ecommerce.routemisr.com/api/v1/cart`);
   }
   removeCartItem(productId: string): Observable<any> {
     return this._HttpClient.delete(
-      `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
-      {
-        headers: this.headers,
-      }
+      `https://ecommerce.routemisr.com/api/v1/cart/${productId}`
     );
   }
   updateCart(productId: string, count: number): Observable<any> {
@@ -37,18 +29,25 @@ export class CartService {
       `https://ecommerce.routemisr.com/api/v1/cart/${productId}`,
       {
         count: count,
-      },
-      {
-        headers: this.headers,
       }
     );
   }
   clearCart(): Observable<any> {
     return this._HttpClient.delete(
-      `https://ecommerce.routemisr.com/api/v1/cart`,
+      `https://ecommerce.routemisr.com/api/v1/cart`
+    );
+  }
+  checkOut(cartId: any, userdata: object): Observable<any> {
+    return this._HttpClient.post(
+      `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`,
       {
-        headers: this.headers,
+        shippingAddress: userdata,
       }
+    );
+  }
+  getAllOrders(userId: any): Observable<any> {
+    return this._HttpClient.get(
+      `https://ecommerce.routemisr.com/api/v1/orders/user/${userId}`
     );
   }
 }

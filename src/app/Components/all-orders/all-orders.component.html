@@ -1,0 +1,85 @@
+<section class="my-5 p-3  bg-light w-75 m-auto">
+    <div class=" mb-5 specific-orders rounded-3 p-5 ">
+        <div class="row my-5" *ngFor="let order of orders">
+            <h2 class="text-capitalize text-main"> order id: <span class="text-muted">#{{order.id}}</span></h2>
+            <div class="col-lg-7 col-md-7">
+               
+                <div class="isDelivered">
+                    <h4 class="text-capitalize"> created At: <span class="text-muted"> {{order.createdAt|date}} </span>
+                    </h4>
+                    <h4 class="text-capitalize"> isDelivered: <!----><i class="fa-solid text-main"
+                            [ngClass]="{'fa-circle-check': isDelivered ,'fa-close text-danger':!isDelivered}"></i>
+                        <!---->
+                    </h4>
+                </div>
+                <div class="isPaid">
+                    <h4 class="text-capitalize"> isPaid: <i class="fa-solid   text-main"
+                            [ngClass]="{'fa-circle-check': isPaid ,'fa-close text-danger':!isPaid}"></i><!----><!---->
+                    </h4>
+                </div>
+                <h4 class="text-capitalize">payed At:<span class="text-muted">{{order.paidAt|date}}</span></h4>
+                <div class="payment text-capitalize">
+                    <h4> payment Type : <span class="text-muted">{{order.paymentMethodType}}</span></h4>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5">
+                <h4 class="text-capitalize"> shipping Price: <span class="text-muted">{{order.shippingPrice | currency:'
+                        EGP '}}</span></h4>
+                <h4 class="text-capitalize"> tax Price: <span class="text-muted"> {{order.taxPrice | currency:'
+                        EGP'}}</span></h4>
+                <hr>
+                <h4 class="text-capitalize"> total allordersUser Price: <span class="text-muted">
+                        {{order.totalOrderPrice | currency:' EGP '}} </span>
+                </h4>
+            </div>
+            <div class="row justify-content-between align-items-start flex-wrap text-start my-5">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th>item</th>
+                                <th>Product</th>
+                                <th>price</th>
+                                <th>brand</th>
+                                <th>count</th>
+                                <th>category</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let cartitem of order.cartItems  , index as i">
+                            <tr class="p-3">
+                                <th class="col-1">{{i+1}}</th>
+                                <td class="col-2">
+                                    <figure class=" rounded-3"><img class="w-100 rounded-4"
+                                            [src]="cartitem.product.imageCover" [alt]="cartitem.product.title"></figure>
+                                </td>
+                                <td class="col-3">
+                                    <h4 class="text-black text-capitalize my-5"><span class="text-muted">
+                                            {{cartitem.price
+                                            |currency:' EGP '}} </span></h4>
+                                </td>
+                                <td class="col-2">
+                                    <figure class="baseSlideItem rounded-3" tabindex="0"><img class="w-100 rounded-4"
+                                            [src]="cartitem.product.brand.image" [alt]="cartitem.product.brand.name">
+                                    </figure>
+                                </td>
+                                <td class="col-2">
+                                    <h4 class="text-black text-capitalize my-5"><span class="text-muted">
+                                            {{cartitem.count}}</span>
+                                    </h4>
+                                </td>
+                                <td>
+                                    <figure class="baseSlideItem rounded-3" tabindex="0"><img class="w-100 rounded-4"
+                                            [src]="cartitem.product.category.image"
+                                            [alt]="cartitem.product.category.name"></figure>
+                                    <h4 class="text-black text-capitalize"> {{cartitem.product.category.name}} </h4>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>

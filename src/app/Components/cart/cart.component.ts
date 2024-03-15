@@ -13,10 +13,10 @@ export class CartComponent implements OnInit {
   CartItem: CartItem | null = null;
   constructor(private _CartService: CartService) {}
   ngOnInit(): void {
-    console.log(this.CartItem);
     this._CartService.getUserCart().subscribe({
       next: (data) => {
         this.CartItem = data;
+        console.log(this.CartItem);
       },
       error: (err) => {
         console.log(err.error.message);

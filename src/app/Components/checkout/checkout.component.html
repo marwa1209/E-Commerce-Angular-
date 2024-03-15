@@ -1,6 +1,6 @@
 <section class="bg-main-light p-4 rounded-3  w-75 mx-auto shadow">
     <h1 class="mb-3 fs-2 fw-light">Pay Now :</h1>
-    <form action="" [formGroup]="CheckOut">
+    <form action="" [formGroup]="CheckOut" (ngSubmit)="handleClick()">
 
         <div class="mb-3">
             <label for="details" class="form-label">details:</label>

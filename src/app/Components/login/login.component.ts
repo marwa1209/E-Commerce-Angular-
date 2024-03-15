@@ -29,6 +29,7 @@ export class LoginComponent {
             localStorage.setItem('token', response.token);
             this.isLoading = false;
             this._Router.navigate(['/home']);
+            console.log(response)
           }
         },
         error: (error: HttpErrorResponse) => {

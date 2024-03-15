@@ -45,7 +45,7 @@
             <input #Inputrepassword formControlName="rePassword" type="password" class="form-control" id="rePassword">
             <ng-container *ngIf="RegisterForm.get('rePassword')?.touched ||Inputrepassword.value.length>0">
                 <p *ngIf="RegisterForm.get('rePassword')?.getError('required')" class="alert alert-danger p-2 my-2">rePassword is required!</p>
-                <p *ngIf="RegisterForm.get('rePassword')?.getError('pattern')" class="alert alert-danger p-2 my-2">rePassword must start with an uppercase letter, followed by 6 to 10 lowercase letters or digits!</p>
+                <p *ngIf="RegisterForm.get('rePassword')?.getError('missmatch')" class="alert alert-danger p-2 my-2">rePassword Miss match</p>
             </ng-container>
         </div>
 

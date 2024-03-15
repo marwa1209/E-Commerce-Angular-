@@ -17,6 +17,7 @@ export class AuthService {
       let decodeToken = jwtDecode(incodeToken);
       this.userdata = decodeToken;
       console.log(decodeToken);
+      return this.userdata;
     }
   }
   setRegister(userData: object): Observable<any> {

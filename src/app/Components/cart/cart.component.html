@@ -27,7 +27,7 @@
                 (click)="changeCount(product.product._id,product.count-1)">-</button>
         </div>
     </div>
-    <button class="btn btn-main mt-5" routerLink="/checkout">CheckOut</button>
+    <button class="btn btn-main mt-5" [routerLink]="['/checkout',CartItem.data._id]">CheckOut</button>
 
 </section>
 <ng-template #msg>

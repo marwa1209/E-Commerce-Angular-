@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -24,6 +24,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SearchPipe } from './Shared/Pipes/search.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { CheckoutComponent } from './Components/checkout/checkout.component';
+import { AllOrdersComponent } from './Components/all-orders/all-orders.component';
+import { MyHttpInterceptor } from './Shared/interceptors/my-http.interceptor';
+import { CategoryComponent } from './Components/category/category.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
     AuthLayoutComponent,
     SearchPipe,
     CheckoutComponent,
+    AllOrdersComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,9 @@ import { CheckoutComponent } from './Components/checkout/checkout.component';
     FormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
